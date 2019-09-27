@@ -1,11 +1,8 @@
 declare module '@apollo/react-hoc' {
   import type { ComponentType, Element, Node } from 'react';
-  
-  declare type Dict = { [key: string]: any, ...};
-  
 
-  declare type MakeOptional = <V>(V) => ?V;
-  declare type MakeDataOptional<TData> = $ObjMap<TData, MakeOptional> | void;
+  declare type Dict = { [key: string]: any, ...};
+
   /**
    * Copied types from Apollo Client libdef
    * Please update apollo-client libdef as well if updating these types
@@ -901,7 +898,7 @@ declare module '@apollo/react-hoc' {
     TVariables = OperationVariables
   > = {
     loading: boolean,
-    data?: MakeDataOptional<TData>,
+    data?: TData | void,
     error?: ApolloError,
     ...
   };

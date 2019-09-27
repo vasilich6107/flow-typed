@@ -3,8 +3,6 @@ declare module '@apollo/react-hoc' {
 
   declare type Dict = { [key: string]: any, ...};
 
-  declare type MakeOptional = <V>(V) => ?V;
-  declare type MakeDataOptional<TData> = $ObjMap<TData, MakeOptional> | void;
   /**
    * Copied types from Apollo Client libdef
    * Please update apollo-client libdef as well if updating these types
@@ -233,7 +231,7 @@ declare module '@apollo/react-hoc' {
     initMutation(
       mutationId: string,
       mutationString: string,
-      variables: Dict 
+      variables: Dict
     ): void;
   }
 
@@ -902,7 +900,7 @@ declare module '@apollo/react-hoc' {
     TData = any,
     TVariables = OperationVariables
   > = {
-    data: MakeDataOptional<TData>,
+    data: TData | void,
     loading: boolean,
     error?: ApolloError,
     variables: TVariables,
@@ -954,7 +952,7 @@ declare module '@apollo/react-hoc' {
     TVariables = OperationVariables
   > = {
     loading: boolean,
-    data?: MakeDataOptional<TData>,
+    data?: TData | void,
     error?: ApolloError,
   };
 

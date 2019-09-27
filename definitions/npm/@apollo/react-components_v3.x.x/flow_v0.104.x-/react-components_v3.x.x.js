@@ -1,9 +1,6 @@
 declare module '@apollo/react-components' {
   import type { ComponentType, Element, Node } from 'react';
 
-  declare type MakeOptional = <V>(V) => ?V;
-  declare type MakeDataOptional<TData> = $ObjMap<TData, MakeOptional> | void;
-
   declare type Record<T, U> = {
     [key: T]: U,
     ...,
@@ -902,7 +899,7 @@ declare module '@apollo/react-components' {
     TData = any,
     TVariables = OperationVariables
   > = {
-    data: MakeDataOptional<TData>,
+    data: TData | void,
     loading: boolean,
     error?: ApolloError,
     variables: TVariables,
@@ -959,7 +956,7 @@ declare module '@apollo/react-components' {
     TVariables = OperationVariables
   > = {
     loading: boolean,
-    data?: MakeDataOptional<TData>,
+    data?: TData | void,
     error?: ApolloError,
     ...
   };
